@@ -40,7 +40,7 @@ export default function Home() {
             <div className="container mx-auto px-4">
                <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                   <div className="text-center">
-                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">200+</div>
+                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">50+</div>
                      <div className="text-gray-600">Tonnes/Month Capacity</div>
                   </div>
                   <div className="text-center">
@@ -48,11 +48,11 @@ export default function Home() {
                      <div className="text-gray-600">Product Range</div>
                   </div>
                   <div className="text-center">
-                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">2+</div>
+                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">10+</div>
                      <div className="text-gray-600">Years Experience</div>
                   </div>
                   <div className="text-center">
-                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">500+</div>
+                     <div className="text-4xl md:text-5xl font-bold text-[#0d4f8b] mb-2">200+</div>
                      <div className="text-gray-600">Satisfied Clients</div>
                   </div>
                </div>
