@@ -27,21 +27,34 @@ export async function POST(req) {
   }
 }
 
-export async function GET() {
+
+export async function GET(req) {
   try {
-    console.log("🔵 GET /api/services called");
-
     await dbConnect();
-    console.log("🟢 MongoDB connected");
 
-    const services = await Service.find();
-    console.log("📦 Services fetched:", services.length);
+    const { searchParams } = new URL(req.url);
+    const name = searchParams.get("name");
 
-    return NextResponse.json(services);
+    // 🔹 If name exists → fetch ONE
+    if (name) {
+      const service = await Service.findOne({ name }).lean();
+      return NextResponse.json(service, {
+        headers: {
+          "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+        },
+      });
+    }
+
+    // 🔹 Else → fetch ALL
+    const services = await Service.find().lean();
+
+    return NextResponse.json(services, {
+      headers: {
+        "Cache-Control": "public, s-maxage=60, stale-while-revalidate=300",
+      },
+    });
   } catch (error) {
-    console.error("❌ GET /api/services FAILED");
-    console.error(error); // ← THIS tells us the real problem
-
-    return NextResponse.json([], { status: 500 });
+    console.error(error);
+    return NextResponse.json(null, { status: 500 });
   }
 }
