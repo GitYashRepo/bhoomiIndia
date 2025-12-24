@@ -29,13 +29,19 @@ export async function POST(req) {
 
 export async function GET() {
   try {
+    console.log("🔵 GET /api/services called");
+
     await dbConnect();
-    const services = await Service.find().sort({ createdAt: -1 });
+    console.log("🟢 MongoDB connected");
+
+    const services = await Service.find();
+    console.log("📦 Services fetched:", services.length);
+
     return NextResponse.json(services);
   } catch (error) {
-    return NextResponse.json(
-      { error: error.message },
-      { status: 500 }
-    );
+    console.error("❌ GET /api/services FAILED");
+    console.error(error); // ← THIS tells us the real problem
+
+    return NextResponse.json([], { status: 500 });
   }
 }
