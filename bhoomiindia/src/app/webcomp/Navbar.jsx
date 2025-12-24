@@ -112,10 +112,10 @@ export function Navbar() {
                            Home
                         </Link>
                         <Link
-                           href="/company"
+                           href="/about"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
-                           Company
+                           About Us
                         </Link>
 
                         {/* Products (Desktop Hover Dropdown) */}
@@ -236,10 +236,10 @@ export function Navbar() {
                            Home
                         </Link>
                         <Link
-                           href="/company"
+                           href="/about"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
-                           Company
+                           About Us
                         </Link>
                         <div>
                            <button

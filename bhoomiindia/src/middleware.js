@@ -4,14 +4,18 @@ import { NextResponse } from "next/server";
 export async function middleware(req) {
   const { pathname } = req.nextUrl;
 
-  // ✅ Allow login page always
+  // ✅ Allow NextAuth API routes
+  if (pathname.startsWith("/api/auth")) {
+    return NextResponse.next();
+  }
+
+  // ✅ Allow login page
   if (pathname.startsWith("/admin/login")) {
     return NextResponse.next();
   }
 
   const token = await getToken({ req });
 
-  // ❌ Not logged in or not admin
   if (!token || token.role !== "admin") {
     return NextResponse.redirect(
       new URL("/admin/login", req.url)

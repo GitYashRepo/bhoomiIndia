@@ -17,47 +17,6 @@ export default function AboutPage() {
             </div>
          </section>
 
-         {/* Prilube Industries Section */}
-         <section className="bg-white py-20">
-            <div className="container mx-auto px-4">
-               <div className="max-w-5xl mx-auto">
-                  <div className="mb-12">
-                     <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">PRILUBE INDUSTRIES</h2>
-                     <div className="h-1 w-24 bg-[#0d4f8b] mb-8"></div>
-                  </div>
-
-                  <div className="space-y-6 text-lg text-gray-700 leading-relaxed mb-12">
-                     <p>
-                        PRILUBE INDUSTRIES is one of the leading manufacturers of specialty metal forming products and coatings
-                        for a wide range of industrial applications. We are a customer-driven and technologically strong firm,
-                        believing in end-to-end customer satisfaction in a cost-effective manner.
-                     </p>
-                     <p>
-                        PRILUBE INDUSTRIES is an innovative, customer-driven, environmentally responsible manufacturer of
-                        metalforming lubricants and coatings under the HOTFORGE brand. We supply our proprietary HOTFORGE
-                        products to customers engaged in metal forging, extrusion, piercing, and other metal forming activities
-                        throughout the world.
-                     </p>
-                     <p>
-                        With our advanced manufacturing facility, well-equipped quality control lab, well-experienced staff, and
-                        wide distributor network, we are committed to quality and on-time delivery of our products. We have
-                        continually manufactured cost-effective lubricants and coatings of the highest quality.
-                     </p>
-                  </div>
-
-                  <div className="bg-blue-50 p-8 rounded-xl border-l-4 border-[#0d4f8b]">
-                     <h3 className="text-2xl font-bold text-gray-900 mb-4">Manufacturing Capacity</h3>
-                     <p className="text-xl text-gray-700">
-                        With our advanced manufacturing capacity of more than{" "}
-                        <span className="font-bold text-[#0d4f8b]">200 Tonnes per month</span>, Prilube Industries offers a wide
-                        range of products according to customer needs and also custom-developed products according to
-                        requirements.
-                     </p>
-                  </div>
-               </div>
-            </div>
-         </section>
-
          {/* Bhoomi India Section */}
          <section className="bg-gray-50 py-20">
             <div className="container mx-auto px-4">
@@ -182,36 +141,20 @@ export default function AboutPage() {
             <div className="container mx-auto px-4">
                <div className="max-w-4xl mx-auto text-center">
                   <h2 className="text-4xl font-bold mb-6">Our Locations</h2>
-                  <div className="grid md:grid-cols-2 gap-8 mt-12">
-                     <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
-                        <h3 className="text-2xl font-bold mb-4">Prilube Industries</h3>
-                        <p className="text-blue-100 leading-relaxed">
-                           Jeevan Nagar, Tathawade
-                           <br />
-                           Pune - 411033, Maharashtra
-                           <br />
-                           India
-                        </p>
-                        <div className="mt-4 space-y-2">
-                           <p className="text-blue-100">prilubeindustries@gmail.com</p>
-                           <p className="text-blue-100">www.prilube.com</p>
-                        </div>
-                     </div>
 
-                     <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
-                        <h3 className="text-2xl font-bold mb-4">Bhoomi India</h3>
-                        <p className="text-blue-100 leading-relaxed">
-                           House No 397, Sector 4A
-                           <br />
-                           Dharuhera - 123106
-                           <br />
-                           Rewari, Haryana, India
-                        </p>
-                        <div className="mt-4 space-y-2">
-                           <p className="text-blue-100">+91 94309 18956</p>
-                           <p className="text-blue-100">+91 1274 313498</p>
-                           <p className="text-blue-100">infobhoomiindia@gmail.com</p>
-                        </div>
+                  <div className="bg-white/10 backdrop-blur-sm p-8 rounded-xl">
+                     <h3 className="text-2xl font-bold mb-4">Bhoomi India</h3>
+                     <p className="text-blue-100 leading-relaxed">
+                        House No 397, Sector 4A
+                        <br />
+                        Dharuhera - 123106
+                        <br />
+                        Rewari, Haryana, India
+                     </p>
+                     <div className="mt-4 space-y-2">
+                        <p className="text-blue-100">+91 94309 18956</p>
+                        <p className="text-blue-100">+91 1274 313498</p>
+                        <p className="text-blue-100">infobhoomiindia@gmail.com</p>
                      </div>
                   </div>
                </div>
