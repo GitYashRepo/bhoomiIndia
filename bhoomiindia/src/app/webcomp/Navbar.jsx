@@ -81,8 +81,8 @@ export function Navbar() {
                   {/* Logo */}
                   <Link href="/" className="flex-shrink-0">
                      <div className="flex flex-col items-center">
-                        <div className="bg-[#0d4f8b] text-white px-3 py-1 text-2xl font-bold">BI</div>
-                        <span className="text-[#0d4f8b] text-xs font-semibold tracking-wider mt-0.5">Bhoomi India</span>
+                        <img className="h-14" src="/logo.jpg" alt="Bhoomi India Logo" />
+                        {/* <span className="text-[#0d4f8b] text-xs font-semibold tracking-wider mt-0.5">Bhoomi India</span> */}
                      </div>
                   </Link>
 
