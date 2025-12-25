@@ -187,6 +187,7 @@ export function Navbar() {
                               <div className="border-t border-gray-100" />
 
                               {/* Hot Forging */}
+                              <Link href="/products" className="block px-4 py-2 text-sm hover:bg-gray-50">All Products</Link>
                               <div className="relative group/sub">
                                  <div className="flex cursor-pointer items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
                                     Hot Forging Lubricants

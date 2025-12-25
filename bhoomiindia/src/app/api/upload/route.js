@@ -10,7 +10,9 @@ export async function POST(req) {
   const formData = await req.formData();
   const file = formData.get("image");
 
-  if (!file) return NextResponse.json({ error: "No file" }, { status: 400 });
+  if (!file) {
+    return NextResponse.json({ error: "No file" }, { status: 400 });
+  }
 
   const buffer = Buffer.from(await file.arrayBuffer());
 
@@ -20,8 +22,16 @@ export async function POST(req) {
   );
 
   const filename = `${Date.now()}-${file.name}`;
-  const uploadStream = bucket.openUploadStream(filename);
-  uploadStream.end(buffer);
+
+  await new Promise((resolve, reject) => {
+    const uploadStream = bucket.openUploadStream(filename, {
+      contentType: file.type, // VERY IMPORTANT
+    });
+
+    uploadStream.end(buffer);
+    uploadStream.on("finish", resolve);
+    uploadStream.on("error", reject);
+  });
 
   return NextResponse.json({ filename });
 }

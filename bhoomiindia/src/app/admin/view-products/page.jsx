@@ -100,8 +100,11 @@ export default function ViewProducts() {
                                  alt={product.productName}
                                  className="w-full h-full object-cover"
                                  onError={(e) => {
-                                    e.currentTarget.src = "/product-placeholder.png"
-                                    e.currentTarget.style.objectFit = "contain"
+                                    if (!e.currentTarget.dataset.fallback) {
+                                       e.currentTarget.dataset.fallback = "true";
+                                       e.currentTarget.src = "/product-placeholder.png";
+                                       e.currentTarget.style.objectFit = "contain";
+                                    }
                                  }}
                               />
                            ) : (
