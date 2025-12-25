@@ -15,14 +15,11 @@ const ServiceSchema = new mongoose.Schema(
     // Heading section
     name: { type: String, required: true },          // Main heading
     subheading: { type: String, required: true },    // Sub heading text
-
     // Metadata
     category: { type: String },
     image: { type: String },
-
     // Key features (bullets)
     features: [{ type: String }],
-
     // Product table data
     products: [ProductRowSchema],
   },

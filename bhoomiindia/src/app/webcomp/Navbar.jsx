@@ -3,12 +3,37 @@
 import * as React from "react"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
+import { signOut, useSession } from "next-auth/react"
+
 
 export function Navbar() {
    const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
    const [productsOpen, setProductsOpen] = React.useState(false)
    const [activeSubmenu, setActiveSubmenu] = React.useState(null)
    const closeTimeoutRef = React.useRef(null)
+   const { data: session, status } = useSession()
+
+   const [open, setOpen] = React.useState(false)
+   const dropdownRef = React.useRef(null)
+   const adminCloseTimeoutRef = React.useRef(null)
+
+
+
+   React.useEffect(() => {
+      function handleClickOutside(e) {
+         if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+            setOpen(false)
+         }
+      }
+
+      document.addEventListener("mousedown", handleClickOutside)
+      return () => document.removeEventListener("mousedown", handleClickOutside)
+   }, [])
+
+
+   // Example admin check
+   // adjust based on how you store role in NextAuth
+   const isAdmin = session?.user?.role === "admin"
 
    const openProducts = () => {
       if (closeTimeoutRef.current) {
@@ -23,6 +48,21 @@ export function Navbar() {
          setProductsOpen(false)
       }, 300)
    }
+
+   const openAdmin = () => {
+      if (adminCloseTimeoutRef.current) {
+         clearTimeout(adminCloseTimeoutRef.current)
+         adminCloseTimeoutRef.current = null
+      }
+      setOpen(true)
+   }
+
+   const closeAdminWithDelay = () => {
+      adminCloseTimeoutRef.current = setTimeout(() => {
+         setOpen(false)
+      }, 300)
+   }
+
 
 
    return (
@@ -209,6 +249,79 @@ export function Navbar() {
                            Contact Us
                         </Link>
                      </nav>
+                     {isAdmin && (
+                        <div
+                           ref={dropdownRef}
+                           className="relative z-50"
+                           onMouseEnter={openAdmin}
+                           onMouseLeave={closeAdminWithDelay}
+                        >
+                           {/* Trigger */}
+                           <button
+                              type="button"
+                              className="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-[#0d4f8b]"
+                           >
+                              <div className="w-7 h-7 rounded-full bg-[#0d4f8b] text-white flex items-center justify-center text-xs font-semibold">
+                                 A
+                              </div>
+                              Admin
+                              <span className="text-xs">▾</span>
+                           </button>
+
+                           {/* Dropdown */}
+                           {open && (
+                              <div className="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+                                 <div className="px-4 py-3 border-b">
+                                    <p className="text-xs text-gray-500">Signed in as</p>
+                                    <p className="text-sm font-medium text-gray-800 truncate">
+                                       {session.user.email}
+                                    </p>
+                                 </div>
+
+                                 <Link
+                                    href="/admin/dashboard"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                 >
+                                    Create Services
+                                 </Link>
+                                 <Link
+                                    href="/admin/create-products"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                 >
+                                    Create Products
+                                 </Link>
+                                 <Link
+                                    href="/admin/view-services"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                 >
+                                    View Services
+                                 </Link>
+                                 <Link
+                                    href="/admin/view-products"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                 >
+                                    View Products
+                                 </Link>
+                                 <Link
+                                    href="/admin/contacts"
+                                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                 >
+                                    Admin Contacts
+                                 </Link>
+
+                                 <div className="border-t">
+                                    <button
+                                       onClick={() => signOut({ callbackUrl: "/admin/login" })}
+                                       className="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                                    >
+                                       Logout
+                                    </button>
+                                 </div>
+                              </div>
+                           )}
+                        </div>
+                     )}
+
                   </div>
 
                   {/* Mobile menu button */}
@@ -366,6 +479,35 @@ export function Navbar() {
                            Contacts
                         </Link>
                      </nav>
+                     {isAdmin && (
+                        <div className="border-t pt-3">
+                           <p className="text-xs text-gray-500 px-1 mb-2">
+                              Admin
+                           </p>
+
+                           <Link
+                              href="/admin/dashboard"
+                              className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                           >
+                              Admin Dashboard
+                           </Link>
+
+                           <Link
+                              href="/admin/contacts"
+                              className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
+                           >
+                              Admin Contacts
+                           </Link>
+
+                           <button
+                              onClick={() => signOut({ callbackUrl: "/admin/login" })}
+                              className="w-full text-left px-2 py-2 text-sm text-red-600 hover:bg-red-50 rounded"
+                           >
+                              Logout
+                           </button>
+                        </div>
+                     )}
+
                   </div>
                )}
             </div>
