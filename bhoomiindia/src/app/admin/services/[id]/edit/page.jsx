@@ -150,12 +150,12 @@ export default function EditServicePage() {
                   />
 
                   {/* IMAGE */}
-                  {form.image && (
+                  {/* {form.image && (
                      <img
                         src={`/api/images/${form.image}`}
                         className="h-40 object-contain mb-4 border rounded"
                      />
-                  )}
+                  )} */}
 
                   <input
                      type="file"
