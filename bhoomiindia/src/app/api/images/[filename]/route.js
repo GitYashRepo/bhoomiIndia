@@ -3,24 +3,41 @@ import connectDB from "@/lib/mongodb";
 
 export const runtime = "nodejs";
 
-export async function GET(req, { params }) {
+export async function GET(req, context) {
   await connectDB();
 
-  const { filename } = params;
+  // 🔥 FIX: params must be awaited
+  const { filename } = await context.params;
+  const decodedFilename = decodeURIComponent(filename);
 
-  const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-    bucketName: "uploads",
-  });
+  const bucket = new mongoose.mongo.GridFSBucket(
+    mongoose.connection.db,
+    { bucketName: "uploads" }
+  );
 
-  try {
-    const stream = bucket.openDownloadStreamByName(decodeURIComponent(filename));
+  const file = await mongoose.connection.db
+    .collection("uploads.files")
+    .findOne({ filename: decodedFilename });
 
-    return new Response(stream, {
-      headers: {
-        "Content-Type": "image/jpeg", // change if PNG
-      },
-    });
-  } catch (err) {
+  if (!file) {
     return new Response("File not found", { status: 404 });
   }
+
+  const nodeStream = bucket.openDownloadStreamByName(decodedFilename);
+
+  const webStream = new ReadableStream({
+    start(controller) {
+      nodeStream.on("data", (chunk) => controller.enqueue(chunk));
+      nodeStream.on("end", () => controller.close());
+      nodeStream.on("error", (err) => controller.error(err));
+    },
+  });
+
+  return new Response(webStream, {
+    headers: {
+      "Content-Type": file.contentType || "image/jpeg",
+      "Content-Length": file.length.toString(),
+      "Cache-Control": "public, max-age=31536000",
+    },
+  });
 }

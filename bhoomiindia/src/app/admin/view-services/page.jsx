@@ -86,14 +86,16 @@ export default function AdminProducts() {
                         <div className="relative h-48 bg-muted overflow-hidden">
                            {service.image ? (
                               <img
-                                 src={service.image || "/placeholder.svg"}
+                                 src={`/api/images/${encodeURIComponent(service.image)}`}
                                  alt={service.name}
-                                 className="h-full object-cover"
+                                 className="w-full h-full object-contain bg-red-100"
                                  onError={(e) => {
-                                    e.currentTarget.src = "/product-placeholder.png"
-                                    e.currentTarget.style.objectFit = "contain"
+                                    if (!e.currentTarget.dataset.fallback) {
+                                       e.currentTarget.dataset.fallback = "true";
+                                       e.currentTarget.src = "/product-placeholder.png";
+                                       e.currentTarget.style.objectFit = "contain";
+                                    }
                                  }}
-                                 loading="lazy"
                               />
                            ) : (
                               <div className="w-full h-full flex items-center justify-center bg-muted">
@@ -107,6 +109,13 @@ export default function AdminProducts() {
                               <Trash2 className="w-4 h-4" />
                               Delete
                            </button>
+                           <Link
+                              href={`/admin/services/${service._id}/edit`}
+                              className="absolute top-4 left-4 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm"
+                           >
+                              Edit
+                           </Link>
+
                         </div>
 
                         <div className="p-8">
