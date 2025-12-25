@@ -1,10 +1,10 @@
 "use client"
 
 import { useState } from "react"
-import { signOut } from "next-auth/react"
 import { Trash2, Plus } from "lucide-react"
 
 export default function AdminDashboard() {
+   const [file, setFile] = useState(null);
    const [form, setForm] = useState({
       name: "",
       subheading: "",
@@ -46,6 +46,20 @@ export default function AdminDashboard() {
       setForm({ ...form, products: updated })
    }
 
+   // Function to upload image
+   async function uploadImage(file) {
+      const fd = new FormData();
+      fd.append("image", file);
+
+      const res = await fetch("/api/upload", {
+         method: "POST",
+         body: fd,
+      });
+
+      const data = await res.json();
+      return data.filename;
+   }
+
    const handleSubmit = async (e) => {
       e.preventDefault()
 
@@ -73,12 +87,17 @@ export default function AdminDashboard() {
       setIsSubmitting(true)
 
       try {
+         let filename = form.image; // fallback if URL already present
+
+         if (file) {
+            filename = await uploadImage(file);
+         }
          const res = await fetch("/api/services", {
             method: "POST",
             headers: {
                "Content-Type": "application/json",
             },
-            body: JSON.stringify(cleanForm),
+            body: JSON.stringify({ ...cleanForm, image: filename }),
          })
 
          const data = await res.json()
@@ -98,6 +117,7 @@ export default function AdminDashboard() {
             features: [],
             products: [],
          })
+         setFile(null);
       } finally {
          setIsSubmitting(false)
       }
@@ -105,18 +125,12 @@ export default function AdminDashboard() {
 
    return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-slate-50 to-blue-50">
-         <header className="bg-white border-b border-slate-200 sticky top-0 z-50">
+         <header className="bg-white border-b border-slate-200 top-0 z-0">
             <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
                <div>
-                  <h1 className="text-3xl font-bold text-slate-900">Product Services</h1>
+                  <h1 className="text-3xl font-bold text-slate-900">Create Product Services</h1>
                   <p className="text-sm text-slate-500 mt-1">Create and manage your service offerings</p>
                </div>
-               <button
-                  onClick={() => signOut({ callbackUrl: "/admin/login" })}
-                  className="px-4 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-medium transition-colors duration-200"
-               >
-                  Logout
-               </button>
             </div>
          </header>
 
@@ -161,13 +175,14 @@ export default function AdminDashboard() {
                         />
                      </div>
                      <div>
-                        <label className="block text-sm font-semibold text-slate-900 mb-2">Image URL</label>
+                        <label className="block text-sm font-semibold text-slate-900 mb-2">
+                           Image *
+                        </label>
                         <input
-                           type="url"
-                           placeholder="https://example.com/image.jpg"
-                           value={form.image}
-                           onChange={(e) => setForm({ ...form, image: e.target.value })}
-                           className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 placeholder-slate-400 text-slate-900"
+                           type="file"
+                           accept="image/*"
+                           onChange={(e) => setFile(e.target.files[0])}
+                           className="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500"
                         />
                      </div>
                   </div>

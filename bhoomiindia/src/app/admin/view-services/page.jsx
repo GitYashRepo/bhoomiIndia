@@ -42,12 +42,12 @@ export default function AdminProducts() {
 
    return (
       <div className="min-h-screen bg-background">
-         <div className="sticky top-0 z-50 bg-card border-b border-border shadow-sm">
+         <div className="top-0 bg-card border-b border-border shadow-sm">
             <div className="max-w-7xl mx-auto px-6 py-6">
                <div className="flex justify-between items-center">
                   <div className="flex items-center gap-3">
                      <Package className="w-8 h-8 text-primary" />
-                     <h1 className="text-3xl font-bold text-foreground">Created Products</h1>
+                     <h1 className="text-3xl font-bold text-foreground">Created Services</h1>
                   </div>
                   <Link
                      href="/admin/dashboard"

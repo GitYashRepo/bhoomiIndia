@@ -42,7 +42,7 @@ export default function AdminContacts() {
 
    return (
       <div className="min-h-screen bg-background">
-         <div className="sticky top-0 z-10 bg-card border-b border-border backdrop-blur-sm">
+         <div className="top-0 bg-card border-b border-border backdrop-blur-sm">
             <div className="max-w-7xl mx-auto px-6 py-6">
                <div className="flex items-center justify-between mb-6">
                   <div>
