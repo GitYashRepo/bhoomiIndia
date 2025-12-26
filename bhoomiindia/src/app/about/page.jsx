@@ -5,13 +5,23 @@ export default function AboutPage() {
    return (
       <div className="min-h-screen flex flex-col">
          {/* Hero Section */}
-         <section className="bg-gradient-to-br from-[#0d4f8b] to-[#1e5a9e] text-white py-20 min-h-[60vh] flex items-center">
-            <div className="container mx-auto px-4">
+         <section className="relative min-h-[60vh] flex items-center text-white">
+            {/* Background Image */}
+            <div
+               className="absolute inset-0 bg-cover bg-center"
+               style={{ backgroundImage: "url('/About-Us-Banner-2048x520.png')" }}
+            />
+
+            {/* Content */}
+            <div className="relative z-10 container mx-auto px-6">
                <div className="max-w-4xl">
-                  <h1 className="text-5xl md:text-6xl font-bold mb-6">About Us</h1>
-                  <p className="text-xl md:text-2xl text-blue-100 leading-relaxed">
-                     Leading the way in specialty metal forming products and industrial solutions with innovation, quality, and
-                     customer satisfaction at our core.
+                  <h1 className="text-4xl md:text-6xl font-bold mb-6">
+                     About Us
+                  </h1>
+
+                  <p className="text-lg md:text-2xl text-blue-100 leading-relaxed">
+                     Leading the way in specialty metal forming products and industrial solutions
+                     with innovation, quality, and customer satisfaction at our core.
                   </p>
                </div>
             </div>
