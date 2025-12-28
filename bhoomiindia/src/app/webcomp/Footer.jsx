@@ -82,8 +82,8 @@ export default function Footer() {
                         <Phone className="w-5 h-5 text-blue-200 mt-1 flex-shrink-0" />
                         <div>
                            <p className="text-xs text-blue-200 mb-1">Call Us</p>
-                           <a href="tel:+918348887087" className="text-white hover:text-blue-100 transition-colors">
-                              +91 83488 87087
+                           <a href="tel:+919430918956" className="text-white hover:text-blue-100 transition-colors">
+                              +91 94309 18956
                            </a>
                         </div>
                      </div>
@@ -96,7 +96,13 @@ export default function Footer() {
                               href="mailto:info@bhoomiindia.com"
                               className="text-white hover:text-blue-100 transition-colors break-all"
                            >
-                              info@bhoomiindia.com
+                              info@bhoomiindia.co.in
+                           </a><br />
+                           <a
+                              href="mailto:info@bhoomiindia.com"
+                              className="text-white text-sm hover:text-blue-100 transition-colors break-all"
+                           >
+                              infobhoomiindia@gmail.com
                            </a>
                         </div>
                      </div>
@@ -106,7 +112,7 @@ export default function Footer() {
                         <div>
                            <p className="text-xs text-blue-200 mb-1">Visit Us</p>
                            <p className="text-white text-sm leading-relaxed">
-                              Plot No. 98/5, Sector-6
+                              Plot No. 89 SP, Sector-6
                               <br />
                               Dharuhera, Haryana
                               <br />
