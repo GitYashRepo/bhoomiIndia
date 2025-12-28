@@ -4,6 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import { ChevronDown } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
+import DownloadButton from "@/components/DownloadButton"
 
 
 export function Navbar() {
@@ -23,7 +24,9 @@ export function Navbar() {
 
    const [openSubmenu, setOpenSubmenu] = React.useState(null)
 
-
+   const handleDownload = () => {
+      alert("Download initiated");
+   };
 
    React.useEffect(() => {
       function handleClickOutside(e) {
@@ -70,7 +73,7 @@ export function Navbar() {
    }
 
 
-
+   // TODO:  Bhoomi Contact - Admin Contact
    return (
       <header className="w-full">
          {/* Top bar with contact info and social media */}
@@ -205,8 +208,13 @@ export function Navbar() {
 
                               <div className="border-t border-gray-100" />
 
-                              <Link href="/products" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                              <Link href="/products" className="block px-4 py-2 text-sm hover:bg-blue-300 hover:rounded-md">
                                  All Products
+                              </Link>
+
+                              {/* Die Casting */}
+                              <Link href="/products/die-casting-tools" className="block px-4 py-2 text-sm hover:bg-blue-300 hover:rounded-md">
+                                 Die Casting Tools
                               </Link>
 
                               {/* Hot Forging */}
@@ -222,7 +230,7 @@ export function Navbar() {
                                           setOpenSubmenu(openSubmenu === "hot" ? null : "hot")
                                        }
                                     }}
-                                    className="flex w-full items-center justify-between px-4 py-2 text-sm hover:bg-gray-50"
+                                    className="flex w-full items-center justify-between px-4 py-2 text-sm hover:bg-blue-300 hover:rounded-md"
                                  >
                                     Hot Forging Lubricants
                                     <ChevronDown className="h-4 w-4 -rotate-90" />
@@ -230,48 +238,14 @@ export function Navbar() {
 
                                  {openSubmenu === "hot" && (
                                     <div className="absolute right-full top-0 w-48 rounded-md border border-gray-200 bg-white shadow-lg">
-                                       <Link href="/products/aqua-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                       <Link href="/products/aqua-graphite" className="block hover:rounded-md hover:bg-blue-300 px-4 py-2 text-sm">
                                           Water Based Graphite
                                        </Link>
-                                       <Link href="/products/aqua-graphite-free" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                       <Link href="/products/aqua-graphite-free" className="block hover:rounded-md px-4 py-2 text-sm hover:bg-blue-300">
                                           Graphite Free
                                        </Link>
-                                       <Link href="/products/oil-based-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                       <Link href="/products/oil-based-graphite" className="block hover:rounded-md px-4 py-2 text-sm hover:bg-blue-300">
                                           Oil Based Graphite
-                                       </Link>
-                                    </div>
-                                 )}
-                              </div>
-
-                              {/* Die Casting */}
-                              <div
-                                 className="relative"
-                                 onMouseEnter={!isTouchDevice ? () => setOpenSubmenu("die") : undefined}
-                                 onMouseLeave={!isTouchDevice ? () => setOpenSubmenu(null) : undefined}
-                              >
-                                 <button
-                                    type="button"
-                                    onClick={() => {
-                                       if (isTouchDevice) {
-                                          setOpenSubmenu(openSubmenu === "die" ? null : "die")
-                                       }
-                                    }}
-                                    className="flex w-full items-center justify-between px-4 py-2 text-sm hover:bg-gray-50"
-                                 >
-                                    Die Casting Lubricants
-                                    <ChevronDown className="h-4 w-4 -rotate-90" />
-                                 </button>
-
-                                 {openSubmenu === "die" && (
-                                    <div className="absolute right-full top-0 w-48 rounded-md border border-gray-200 bg-white shadow-lg">
-                                       <Link href="/products/die-casting/water-soluble" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                          Water Soluble
-                                       </Link>
-                                       <Link href="/products/die-casting/synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                          Synthetic
-                                       </Link>
-                                       <Link href="/products/die-casting/semi-synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                          Semi-Synthetic
                                        </Link>
                                     </div>
                                  )}
@@ -279,7 +253,7 @@ export function Navbar() {
 
                               <div className="border-t border-gray-100" />
 
-                              <Link href="/products/accessories" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                              <Link href="/products/tools-accessories" className="block px-4 py-2 text-sm hover:bg-blue-300 hover:rounded-md">
                                  Tools & Accessories
                               </Link>
                            </div>
@@ -287,18 +261,19 @@ export function Navbar() {
 
 
 
-                        <Link
+                        {/* <Link
                            href="/gallery"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
                            Gallery
-                        </Link>
+                        </Link> */}
                         <Link
                            href="/contact"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
                            Contact Us
                         </Link>
+                        <DownloadButton label="Download" onClick={handleDownload} />
                      </nav>
                      {isAdmin && (
                         <div
@@ -540,14 +515,14 @@ export function Navbar() {
                               href="/admin/dashboard"
                               className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
                            >
-                              Admin Dashboard
+                              Bhoomi Dashboard
                            </Link>
 
                            <Link
                               href="/admin/contacts"
                               className="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded"
                            >
-                              Admin Contacts
+                              Bhoomi Contacts
                            </Link>
 
                            <button

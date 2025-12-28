@@ -1,5 +1,46 @@
 "use client"
 import { Mail, Phone, MapPin, Linkedin, Facebook, Instagram, Youtube } from "lucide-react"
+const FooterQuickLinks = [
+   {
+      name: "Home",
+      link: "/"
+   },
+   {
+      name: "About Us",
+      link: "/about"
+   },
+   {
+      name: "Products",
+      link: "/products"
+   },
+   {
+      name: "Contact Us",
+      link: "/contact"
+   },
+   {
+      name: "Admin",
+      link: "/admin/dashboard"
+   },
+]
+
+const FooterOurSolutionsLink = [
+   {
+      name: "All Products",
+      link: "/products"
+   },
+   {
+      name: "Hot Forging Lubricants",
+      link: "/products"
+   },
+   {
+      name: "Die Casting Tools",
+      link: "/admin/dashboard"
+   },
+   {
+      name: "Tools And Accessories",
+      link: "/admin/dashboard"
+   },
+]
 
 export default function Footer() {
    return (
@@ -48,10 +89,10 @@ export default function Footer() {
                <div>
                   <h4 className="text-lg font-semibold mb-6 text-white">Quick Links</h4>
                   <ul className="space-y-3">
-                     {["Home", "About Us", "Products", "Gallery", "Contact Us"].map((item) => (
-                        <li key={item}>
-                           <a href="#" className="text-blue-100 hover:text-white transition-colors">
-                              {item}
+                     {FooterQuickLinks.map((item) => (
+                        <li key={item.name}>
+                           <a href={item.link} className="text-blue-100 hover:text-white transition-colors">
+                              {item.name}
                            </a>
                         </li>
                      ))}
@@ -62,14 +103,13 @@ export default function Footer() {
                <div>
                   <h4 className="text-lg font-semibold mb-6 text-white">Our Solutions</h4>
                   <ul className="space-y-3">
-                     {["Cutting Tools", "Machine Tools", "Die Casting", "Precision Gear", "Safety Products", "Lubricants"].map(
-                        (item) => (
-                           <li key={item}>
-                              <a href="#" className="text-blue-100 hover:text-white transition-colors">
-                                 {item}
-                              </a>
-                           </li>
-                        ),
+                     {FooterOurSolutionsLink.map((item) => (
+                        <li key={item.name}>
+                           <a href={item.link} className="text-blue-100 hover:text-white transition-colors">
+                              {item.name}
+                           </a>
+                        </li>
+                     ),
                      )}
                   </ul>
                </div>
