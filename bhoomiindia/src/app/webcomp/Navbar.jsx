@@ -17,6 +17,12 @@ export function Navbar() {
    const dropdownRef = React.useRef(null)
    const adminCloseTimeoutRef = React.useRef(null)
 
+   const isTouchDevice =
+      typeof window !== "undefined" &&
+      window.matchMedia("(hover: none)").matches
+
+   const [openSubmenu, setOpenSubmenu] = React.useState(null)
+
 
 
    React.useEffect(() => {
@@ -69,7 +75,7 @@ export function Navbar() {
       <header className="w-full">
          {/* Top bar with contact info and social media */}
          <div className="bg-[#0d4f8b] text-white">
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-8">
                <div className="flex h-10 items-center justify-between text-xs">
                   <div className="flex items-center gap-6">
                      <div className="flex items-center gap-2">
@@ -81,8 +87,8 @@ export function Navbar() {
                               d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                            />
                         </svg>
-                        <a href="tel:+918348887087">
-                           <span>PH: +91 83488 87087</span>
+                        <a href="tel:+919430918956">
+                           <span>PH: +91 94309 18956</span>
                         </a>
                      </div>
                      <div className="flex items-center gap-2">
@@ -115,7 +121,9 @@ export function Navbar() {
                      <Link href="#" className="hover:text-gray-300 transition-colors">
                         <span className="sr-only">Instagram</span>
                         <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-                           <path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.421.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.421-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.795.646-1.44 1.44-1.44.795 0 1.44.646 1.44 1.44z" />
+                           <path d="M12 2.2c3.2 0 3.6.01 4.85.07 1.17.05 1.8.24 2.22.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.17.42.36 1.05.41 2.22.06 1.25.07 1.65.07 4.85s-.01 3.6-.07 4.85c-.05 1.17-.24 1.8-.41 2.22-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.17-1.05.36-2.22.41-1.25.06-1.65.07-4.85.07s-3.6-.01-4.85-.07c-1.17-.05-1.8-.24-2.22-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.17-.42-.36-1.05-.41-2.22C2.21 15.6 2.2 15.2 2.2 12s.01-3.6.07-4.85c.05-1.17.24-1.8.41-2.22.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.17 1.05-.36 2.22-.41C8.4 2.21 8.8 2.2 12 2.2zm0-2.2C8.74 0 8.33.02 7.05.07 5.78.13 4.9.33 4.14.63c-.79.31-1.46.72-2.13 1.38C1.35 2.68.94 3.35.63 4.14.33 4.9.13 5.78.07 7.05.02 8.33 0 8.74 0 12s.02 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13.67.67 1.34 1.08 2.13 1.38.76.3 1.64.5 2.91.56C8.33 23.98 8.74 24 12 24s3.67-.02 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.31 1.46-.72 2.13-1.38.67-.67 1.08-1.34 1.38-2.13.3-.76.5-1.64.56-2.91.05-1.28.07-1.69.07-4.95s-.02-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.31-.79-.72-1.46-1.38-2.13-.67-.67-1.34-1.08-2.13-1.38-.76-.3-1.64-.5-2.91-.56C15.67.02 15.26 0 12 0z" />
+                           <path d="M12 5.84A6.16 6.16 0 1 0 12 18.16 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 12 8a4 4 0 0 1 0 8z" />
+                           <circle cx="18.4" cy="5.6" r="1.44" />
                         </svg>
                      </Link>
                      <Link href="#" className="hover:text-gray-300 transition-colors">
@@ -137,9 +145,9 @@ export function Navbar() {
 
          {/* Main navigation bar */}
          <div className="bg-white border-b border-gray-200">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-               <div className="container mx-auto px-4">
-                  <div className="flex h-20 items-center justify-between">
+            <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+               <div className="container flex flex-row items-center justify-between">
+                  <div className="w-full flex flex-row h-20 items-center justify-between">
                      <Link href="/" className="text-xl font-bold text-[#0d4f8b]">
                         <div className="flex flex-col items-center">
                            <img className="h-14" src="/logo.jpg" alt="Bhoomi India Logo" />
@@ -159,13 +167,24 @@ export function Navbar() {
                         </Link>
 
                         {/* Products (Desktop Hover Dropdown) */}
+
+                        {/* Dropdown */}
+                        {/* Products (Desktop + Tablet) */}
+                        {/* Products */}
                         <div
                            className="relative"
-                           onMouseEnter={openProducts}
-                           onMouseLeave={closeProductsWithDelay}
+                           onMouseEnter={!isTouchDevice ? openProducts : undefined}
+                           onMouseLeave={!isTouchDevice ? closeProductsWithDelay : undefined}
                         >
+                           {/* Trigger */}
                            <button
                               type="button"
+                              onClick={() => {
+                                 if (isTouchDevice) {
+                                    setProductsOpen(prev => !prev)
+                                    setOpenSubmenu(null)
+                                 }
+                              }}
                               className="flex items-center gap-1 text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                            >
                               Products
@@ -177,7 +196,7 @@ export function Navbar() {
 
                            {/* Dropdown */}
                            <div
-                              className={`absolute left-0 top-full z-50 mt-3 w-56 rounded-md border border-gray-200 bg-white shadow-lg transition-opacity duration-150 ${productsOpen ? "opacity-100 visible" : "opacity-0 invisible"
+                              className={`absolute left-0 top-full z-50 mt-3 w-56 rounded-md border border-gray-200 bg-white shadow-lg transition-all ${productsOpen ? "opacity-100 visible" : "opacity-0 invisible"
                                  }`}
                            >
                               <div className="px-3 py-2 text-xs font-semibold text-[#0d4f8b]">
@@ -186,46 +205,76 @@ export function Navbar() {
 
                               <div className="border-t border-gray-100" />
 
+                              <Link href="/products" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                 All Products
+                              </Link>
+
                               {/* Hot Forging */}
-                              <Link href="/products" className="block px-4 py-2 text-sm hover:bg-gray-50">All Products</Link>
-                              <div className="relative group/sub">
-                                 <div className="flex cursor-pointer items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                              <div
+                                 className="relative"
+                                 onMouseEnter={!isTouchDevice ? () => setOpenSubmenu("hot") : undefined}
+                                 onMouseLeave={!isTouchDevice ? () => setOpenSubmenu(null) : undefined}
+                              >
+                                 <button
+                                    type="button"
+                                    onClick={() => {
+                                       if (isTouchDevice) {
+                                          setOpenSubmenu(openSubmenu === "hot" ? null : "hot")
+                                       }
+                                    }}
+                                    className="flex w-full items-center justify-between px-4 py-2 text-sm hover:bg-gray-50"
+                                 >
                                     Hot Forging Lubricants
                                     <ChevronDown className="h-4 w-4 -rotate-90" />
-                                 </div>
+                                 </button>
 
-                                 <div className="absolute right-full top-0 hidden w-48 rounded-md border border-gray-200 bg-white shadow-lg group-hover/sub:block">
-                                    <Link href="/products/aqua-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Water Based Graphite lubricants
-                                    </Link>
-                                    <Link href="/products/aqua-graphite-free" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Water Based Graphite Free lubricants
-                                    </Link>
-                                    <Link href="/products/oil-based-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Oil Based Graphite Lubricants
-                                    </Link>
-                                 </div>
+                                 {openSubmenu === "hot" && (
+                                    <div className="absolute right-full top-0 w-48 rounded-md border border-gray-200 bg-white shadow-lg">
+                                       <Link href="/products/aqua-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Water Based Graphite
+                                       </Link>
+                                       <Link href="/products/aqua-graphite-free" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Graphite Free
+                                       </Link>
+                                       <Link href="/products/oil-based-graphite" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Oil Based Graphite
+                                       </Link>
+                                    </div>
+                                 )}
                               </div>
 
-
                               {/* Die Casting */}
-                              <div className="relative group/sub">
-                                 <div className="flex cursor-pointer items-center justify-between px-4 py-2 text-sm text-gray-700 hover:bg-gray-50">
+                              <div
+                                 className="relative"
+                                 onMouseEnter={!isTouchDevice ? () => setOpenSubmenu("die") : undefined}
+                                 onMouseLeave={!isTouchDevice ? () => setOpenSubmenu(null) : undefined}
+                              >
+                                 <button
+                                    type="button"
+                                    onClick={() => {
+                                       if (isTouchDevice) {
+                                          setOpenSubmenu(openSubmenu === "die" ? null : "die")
+                                       }
+                                    }}
+                                    className="flex w-full items-center justify-between px-4 py-2 text-sm hover:bg-gray-50"
+                                 >
                                     Die Casting Lubricants
                                     <ChevronDown className="h-4 w-4 -rotate-90" />
-                                 </div>
+                                 </button>
 
-                                 <div className="absolute right-full top-0 hidden w-48 rounded-md border border-gray-200 bg-white shadow-lg group-hover/sub:block">
-                                    <Link href="/products/die-casting/water-soluble" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Water Soluble
-                                    </Link>
-                                    <Link href="/products/die-casting/synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Synthetic
-                                    </Link>
-                                    <Link href="/products/die-casting/semi-synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
-                                       Semi-Synthetic
-                                    </Link>
-                                 </div>
+                                 {openSubmenu === "die" && (
+                                    <div className="absolute right-full top-0 w-48 rounded-md border border-gray-200 bg-white shadow-lg">
+                                       <Link href="/products/die-casting/water-soluble" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Water Soluble
+                                       </Link>
+                                       <Link href="/products/die-casting/synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Synthetic
+                                       </Link>
+                                       <Link href="/products/die-casting/semi-synthetic" className="block px-4 py-2 text-sm hover:bg-gray-50">
+                                          Semi-Synthetic
+                                       </Link>
+                                    </div>
+                                 )}
                               </div>
 
                               <div className="border-t border-gray-100" />
@@ -235,6 +284,7 @@ export function Navbar() {
                               </Link>
                            </div>
                         </div>
+
 
 
                         <Link

@@ -5,35 +5,46 @@ import { ArrowRight, Factory, Wrench, ShieldCheck, Users } from "lucide-react"
 export default function Home() {
    return (
       <div className="min-h-screen flex flex-col">
-         <section className="relative bg-gradient-to-br from-[#0d4f8b] via-[#1e5a9e] to-[#0d4f8b] text-white min-h-[90vh] flex items-center">
-            <div className="absolute inset-0 bg-black/20"></div>
-            <div className="container mx-auto px-4 py-20 relative z-10">
-               <div className="max-w-4xl">
-                  <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-                     Leading Manufacturer of Metal Forming Products
-                  </h1>
-                  <p className="text-xl md:text-2xl text-blue-100 mb-8 leading-relaxed">
-                     Specialized solutions in forging lubricants, die casting equipment, and industrial automation for metal
-                     forming industries worldwide.
-                  </p>
-                  <div className="flex flex-wrap gap-4">
-                     <Link
-                        href="/products"
-                        className="bg-white text-[#0d4f8b] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition-colors inline-flex items-center gap-2"
-                     >
-                        Explore Products
-                        <ArrowRight className="w-5 h-5" />
-                     </Link>
-                     <Link
-                        href="/contact"
-                        className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-colors"
-                     >
-                        Contact Us
-                     </Link>
-                  </div>
+         <section className="relative min-h-[90vh] flex items-center text-white">
+            {/* Background Image */}
+            <div
+               className="absolute inset-0 bg-cover bg-center"
+               style={{ backgroundImage: "url('/banner.jpg')" }}
+            />
+
+            {/* Overlay */}
+            <div className="absolute inset-0 bg-black/50" />
+
+            {/* Content */}
+            <div className="relative z-10 px-6 max-w-4xl">
+               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                  Leading Manufacturer of Metal Forming Products
+               </h1>
+
+               <p className="text-lg md:text-2xl text-blue-100 mb-10 leading-relaxed">
+                  Specialized solutions in forging lubricants, die casting equipment, and industrial
+                  automation for metal forming industries worldwide.
+               </p>
+
+               <div className="flex flex-wrap gap-4">
+                  <Link
+                     href="/products"
+                     className="bg-white text-[#0d4f8b] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition inline-flex items-center gap-2"
+                  >
+                     Explore Products
+                     <ArrowRight className="w-5 h-5" />
+                  </Link>
+
+                  <Link
+                     href="/contact"
+                     className="border-2 border-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition"
+                  >
+                     Contact Us
+                  </Link>
                </div>
             </div>
          </section>
+
 
          {/* Stats Section */}
          <section className="bg-white py-16">
