@@ -1,6 +1,7 @@
 import dbConnect from "@/lib/mongodb";
 import Service from "@/models/Service";
 import { Droplet, Beaker, Package, Settings } from "lucide-react";
+import Link from "next/link";
 
 // ✅ ISR – cached & instant
 export const revalidate = 60;
@@ -84,20 +85,26 @@ export default async function ProductsPage() {
 
                {/* Static sections BELOW stay untouched */}
                <div className="grid md:grid-cols-3 gap-8">
-                  <div className="bg-green-50 p-8 rounded-xl">
-                     <Beaker />
-                     <h3 className="text-xl font-bold mt-4">Cleaners</h3>
-                  </div>
+                  <Link href="/products/die-casting-tools">
+                     <div className="bg-green-50 p-8 rounded-xl">
+                        <Beaker />
+                        <h3 className="text-xl font-bold mt-4">Cleaners</h3>
+                     </div>
+                  </Link>
 
-                  <div className="bg-purple-50 p-8 rounded-xl">
-                     <Package />
-                     <h3 className="text-xl font-bold mt-4">Dry Lubricants</h3>
-                  </div>
+                  <Link href="/products/die-casting-tools">
+                     <div className="bg-purple-50 p-8 rounded-xl">
+                        <Package />
+                        <h3 className="text-xl font-bold mt-4">Dry Lubricants</h3>
+                     </div>
+                  </Link>
 
-                  <div className="bg-red-50 p-8 rounded-xl">
-                     <Settings />
-                     <h3 className="text-xl font-bold mt-4">Equipment</h3>
-                  </div>
+                  <Link href="/products/tools-accessories">
+                     <div className="bg-red-50 p-8 rounded-xl">
+                        <Settings />
+                        <h3 className="text-xl font-bold mt-4">Equipment</h3>
+                     </div>
+                  </Link>
                </div>
             </div>
          </section>

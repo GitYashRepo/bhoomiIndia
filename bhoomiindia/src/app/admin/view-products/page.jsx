@@ -55,7 +55,7 @@ export default function ViewProducts() {
                </div>
 
                <Link
-                  href="/admin/dashboard"
+                  href="/admin/create-products"
                   className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:opacity-90"
                >
                   <Plus className="w-5 h-5" />

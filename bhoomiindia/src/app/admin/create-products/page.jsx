@@ -1,8 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { signOut } from "next-auth/react"
-import { Trash2 } from "lucide-react"
 
 export default function AdminCreateProducts() {
    const [file, setFile] = useState(null);
@@ -11,6 +9,7 @@ export default function AdminCreateProducts() {
       image: "",
       heading: "",
       description: "",
+      categories: [],
    })
 
    const [isSubmitting, setIsSubmitting] = useState(false)
@@ -38,6 +37,11 @@ export default function AdminCreateProducts() {
          return
       }
 
+      if (form.categories.length === 0) {
+         alert("Please select at least one category");
+         return;
+      }
+
       setIsSubmitting(true)
 
       try {
@@ -61,6 +65,7 @@ export default function AdminCreateProducts() {
             image: "",
             heading: "",
             description: "",
+            categories: [],
          })
          setFile(null);
       } finally {
@@ -91,6 +96,40 @@ export default function AdminCreateProducts() {
                   </h2>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                     {/* Categories */}
+                     <div className="md:col-span-2">
+                        <label className="block text-sm font-semibold text-slate-900 mb-3">
+                           Categories *
+                        </label>
+
+                        <div className="flex gap-6">
+                           {["Die Casting Tools", "Tools And Accessories"].map((cat) => (
+                              <label key={cat} className="flex items-center gap-2">
+                                 <input
+                                    type="checkbox"
+                                    checked={form.categories.includes(cat)}
+                                    onChange={(e) => {
+                                       if (e.target.checked) {
+                                          setForm({
+                                             ...form,
+                                             categories: [...form.categories, cat],
+                                          });
+                                       } else {
+                                          setForm({
+                                             ...form,
+                                             categories: form.categories.filter(
+                                                (c) => c !== cat
+                                             ),
+                                          });
+                                       }
+                                    }}
+                                    className="w-4 h-4 accent-blue-600"
+                                 />
+                                 <span className="text-slate-700">{cat}</span>
+                              </label>
+                           ))}
+                        </div>
+                     </div>
                      {/* Product Name */}
                      <div>
                         <label className="block text-sm font-semibold text-slate-900 mb-2">
