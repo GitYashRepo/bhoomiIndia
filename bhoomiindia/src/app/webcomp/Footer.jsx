@@ -163,6 +163,14 @@ export default function Footer() {
                   </div>
                </div>
             </div>
+
+            {/* Bottom Bar */}
+            <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+               <p className="text-blue-100 text-sm">© 2026 Bhoomi India. All rights reserved.</p>
+               <a href="https://www.webtechware.in" target="_blank" className="text-blue-100 hover:text-white transition-colors">
+                  Developed by Web Tech Ware
+               </a>
+            </div>
          </div>
       </footer>
    )
