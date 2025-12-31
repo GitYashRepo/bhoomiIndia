@@ -86,6 +86,9 @@ export default function ContactPage() {
                            </div>
                            <div>
                               <h3 className="font-semibold text-gray-900 mb-1">Email</h3>
+                              <a href="mailto:info@bhoomiindia.co.in" className="text-indigo-600 hover:underline">
+                                 info@bhoomiindia.co.in
+                              </a><br />
                               <a href="mailto:infobhoomiindia@gmail.com" className="text-indigo-600 hover:underline">
                                  infobhoomiindia@gmail.com
                               </a>
@@ -203,7 +206,7 @@ export default function ContactPage() {
 
          <div id="location" className="mx-8">
             <h2 className="text-4xl text-center font-serif font-light mb-8">Our Location</h2>
-            <div className="w-full flex flex-col md:flex-row items-center justify-evenly">
+            <div className="w-full flex flex-col md:flex-row gap-4 items-center justify-evenly">
                <div className="rounded-lg overflow-hidden border h-96 w-[100%]">
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d878.9632051221695!2d76.79604187366655!3d28.21178388521409!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d49007fe078db%3A0x12fb5ac7e15a5b78!2sBHOOMI%20INDA!5e0!3m2!1sen!2sin!4v1767191006593!5m2!1sen!2sin"
@@ -214,7 +217,7 @@ export default function ContactPage() {
                      loading="lazy"
                   ></iframe>
                </div>
-               <div className="rounded-lg overflow-hidden border h-50 w-[100%]">
+               <div className="rounded-lg overflow-hidden border h-50 md:h-96 w-[100%]">
                   <iframe
                      src="https://www.google.com/maps/embed?pb=!3m2!1sen!2sin!4v1767190650060!5m2!1sen!2sin!6m8!1m7!1sstY-hgS3pIytMVbmt7BavA!2m2!1d28.21178388521409!2d76.79604187366655!3f198.8266560302823!4f-0.5076083844065948!5f0.7820865974627469"
                      width="100%"
