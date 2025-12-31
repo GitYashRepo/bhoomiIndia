@@ -34,11 +34,11 @@ const FooterOurSolutionsLink = [
    },
    {
       name: "Die Casting Tools",
-      link: "/admin/dashboard"
+      link: "/products/die-casting-tools"
    },
    {
       name: "Tools And Accessories",
-      link: "/admin/dashboard"
+      link: "/products/tools-accessories"
    },
 ]
 
@@ -161,22 +161,6 @@ export default function Footer() {
                         </div>
                      </div>
                   </div>
-               </div>
-            </div>
-
-            {/* Bottom Bar */}
-            <div className="border-t border-white/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-               <p className="text-blue-100 text-sm">© 2026 Bhoomi India. All rights reserved.</p>
-               <div className="flex gap-6 text-sm">
-                  <a href="#" className="text-blue-100 hover:text-white transition-colors">
-                     Privacy Policy
-                  </a>
-                  <a href="#" className="text-blue-100 hover:text-white transition-colors">
-                     Terms of Service
-                  </a>
-                  <a href="#" className="text-blue-100 hover:text-white transition-colors">
-                     Cookie Policy
-                  </a>
                </div>
             </div>
          </div>
