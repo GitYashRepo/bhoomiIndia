@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { ChevronDown } from "lucide-react"
+import { ChevronDown, Download } from "lucide-react"
 import { signOut, useSession } from "next-auth/react"
 import DownloadButton from "@/components/DownloadButton"
 
@@ -77,7 +77,7 @@ export function Navbar() {
    return (
       <header className="w-full">
          {/* Top bar with contact info and social media */}
-         <div className="bg-[#0d4f8b] text-white">
+         <div className="bg-[#0d4f8b] text-white hidden md:block">
             <div className="container mx-auto px-8">
                <div className="flex h-10 items-center justify-between text-xs">
                   <div className="flex items-center gap-6">
@@ -258,22 +258,50 @@ export function Navbar() {
                               </Link>
                            </div>
                         </div>
-
-
-
-                        {/* <Link
-                           href="/gallery"
-                           className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
-                        >
-                           Gallery
-                        </Link> */}
                         <Link
                            href="/contact"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
                            Contact Us
                         </Link>
-                        <DownloadButton label="Download" onClick={handleDownload} />
+                        <a download href="/BhoomiIndia.pdf">
+                           <button
+                              className="group relative inline-flex items-center gap-3 px-4 py-2
+               rounded-lg font-semibold text-md tracking-wide
+               text-white bg-gradient-to-r from-indigo-600 to-purple-600
+               overflow-hidden transition-all duration-300
+               hover:scale-[1.03] active:scale-95"
+                           >
+                              {/* Glow ring */}
+                              <span
+                                 className="absolute inset-0 rounded-lg opacity-0
+                 ring-2 ring-purple-400 ring-offset-2 ring-offset-transparent
+                 transition-opacity duration-300
+                 group-hover:opacity-100"
+                              />
+
+                              {/* Hover sweep */}
+                              <span
+                                 className="absolute inset-0 -translate-x-full
+                 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                 transition-transform duration-700 ease-out
+                 group-hover:translate-x-full"
+                              />
+
+                              {/* Icon */}
+                              <span className="relative flex items-center justify-center w-6 h-6">
+                                 <Download
+                                    className="w-5 h-5 transition-transform duration-300
+                   group-hover:rotate-12 group-hover:scale-110"
+                                    strokeWidth={2.5}
+                                 />
+                              </span>
+
+                              {/* Text */}
+                              <span className="relative">Download</span>
+                           </button>
+                        </a>
+
                      </nav>
                      {isAdmin && (
                         <div
@@ -332,7 +360,7 @@ export function Navbar() {
                                     href="/admin/contacts"
                                     className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                  >
-                                    Admin Contacts
+                                    Bhoomi Contacts
                                  </Link>
 
                                  <div className="border-t">
@@ -391,74 +419,31 @@ export function Navbar() {
                            {productsOpen && (
                               <div className="ml-4 mt-2 flex flex-col gap-2">
                                  <div>
-                                    <button
-                                       onClick={() => setActiveSubmenu(activeSubmenu === "hot-forging" ? null : "hot-forging")}
-                                       className="flex items-center gap-1 text-gray-600 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
-                                    >
-                                       Hot Forging Lubricants
-                                       <ChevronDown
-                                          className={`h-3 w-3 transition-transform ${activeSubmenu === "hot-forging" ? "rotate-180" : ""}`}
-                                       />
-                                    </button>
-                                    {activeSubmenu === "hot-forging" && (
-                                       <div className="ml-4 mt-2 flex flex-col gap-1">
-                                          <Link
-                                             href="/products/hot-forging/standard"
-                                             className="text-gray-500 hover:text-[#0d4f8b] text-xs"
-                                          >
-                                             Standard Grade
-                                          </Link>
-                                          <Link
-                                             href="/products/hot-forging/premium"
-                                             className="text-gray-500 hover:text-[#0d4f8b] text-xs"
-                                          >
-                                             Premium Grade
-                                          </Link>
-                                          <Link
-                                             href="/products/hot-forging/industrial"
-                                             className="text-gray-500 hover:text-[#0d4f8b] text-xs"
-                                          >
-                                             Industrial Grade
-                                          </Link>
-                                       </div>
-                                    )}
+                                    <Link href="/products">
+                                       <button
+                                          onClick={() => setActiveSubmenu(activeSubmenu === "hot-forging" ? null : "hot-forging")}
+                                          className="flex items-center gap-1 text-gray-600 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
+                                       >
+                                          All Products
+                                       </button>
+                                    </Link>
                                  </div>
                                  <div>
-                                    <button
-                                       onClick={() => setActiveSubmenu(activeSubmenu === "graphite" ? null : "graphite")}
-                                       className="flex items-center gap-1 text-gray-600 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
-                                    >
-                                       Graphite Lubricants
-                                       <ChevronDown
-                                          className={`h-3 w-3 transition-transform ${activeSubmenu === "graphite" ? "rotate-180" : ""}`}
-                                       />
-                                    </button>
-                                    {activeSubmenu === "graphite" && (
-                                       <div className="ml-4 mt-2 flex flex-col gap-1">
-                                          <Link
-                                             href="/products/graphite/aqueous"
-                                             className="text-gray-500 hover:text-[#0d4f8b] text-xs"
-                                          >
-                                             Aqueous Graphite
-                                          </Link>
-                                          <Link href="/products/graphite/free" className="text-gray-500 hover:text-[#0d4f8b] text-xs">
-                                             Graphite Free
-                                          </Link>
-                                          <Link
-                                             href="/products/graphite/oil-based"
-                                             className="text-gray-500 hover:text-[#0d4f8b] text-xs"
-                                          >
-                                             Oil Based Graphite
-                                          </Link>
-                                       </div>
-                                    )}
+                                    <Link href="/products/die-casting-tools">
+                                       <button
+                                          onClick={() => setActiveSubmenu(activeSubmenu === "graphite" ? null : "graphite")}
+                                          className="flex items-center gap-1 text-gray-600 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
+                                       >
+                                          Die Casting Tools
+                                       </button>
+                                    </Link>
                                  </div>
                                  <div>
                                     <button
                                        onClick={() => setActiveSubmenu(activeSubmenu === "die-casting" ? null : "die-casting")}
                                        className="flex items-center gap-1 text-gray-600 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                                     >
-                                       Die Casting Lubricants
+                                       Hot Forging Lubricants
                                        <ChevronDown
                                           className={`h-3 w-3 transition-transform ${activeSubmenu === "die-casting" ? "rotate-180" : ""}`}
                                        />
@@ -466,46 +451,77 @@ export function Navbar() {
                                     {activeSubmenu === "die-casting" && (
                                        <div className="ml-4 mt-2 flex flex-col gap-1">
                                           <Link
-                                             href="/products/die-casting/water-soluble"
+                                             href="/products/aqua-graphite"
                                              className="text-gray-500 hover:text-[#0d4f8b] text-xs"
                                           >
-                                             Water Soluble
+                                             Water Based Graphite
                                           </Link>
                                           <Link
-                                             href="/products/die-casting/synthetic"
+                                             href="/products/aqua-graphite-free"
                                              className="text-gray-500 hover:text-[#0d4f8b] text-xs"
                                           >
-                                             Synthetic
+                                             Graphite Free
                                           </Link>
                                           <Link
-                                             href="/products/die-casting/semi-synthetic"
+                                             href="/products/oil-based-graphite"
                                              className="text-gray-500 hover:text-[#0d4f8b] text-xs"
                                           >
-                                             Semi-Synthetic
+                                             Oil Based Graphite
                                           </Link>
                                        </div>
                                     )}
                                  </div>
-                                 <Link href="/products/accessories" className="text-gray-600 hover:text-[#0d4f8b] text-sm">
+                                 <Link href="/products/tools-accessories" className="text-gray-600 hover:text-[#0d4f8b] text-sm">
                                     Tools & Accessories
                                  </Link>
                               </div>
                            )}
                         </div>
                         <Link
-                           href="/become-partner"
-                           className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
-                        >
-                           Become a Partner
-                        </Link>
-                        <Link
-                           href="/contacts"
+                           href="/contact"
                            className="text-gray-700 hover:text-[#0d4f8b] text-sm font-medium transition-colors"
                         >
                            Contacts
                         </Link>
+                        <a download href="/BhoomiIndia.pdf">
+                           <button
+                              className="group relative inline-flex items-center gap-3 px-4 py-2
+               rounded-lg font-semibold text-md tracking-wide
+               text-white bg-gradient-to-r from-indigo-600 to-purple-600
+               overflow-hidden transition-all duration-300
+               hover:scale-[1.03] active:scale-95"
+                           >
+                              {/* Glow ring */}
+                              <span
+                                 className="absolute inset-0 rounded-lg opacity-0
+                 ring-2 ring-purple-400 ring-offset-2 ring-offset-transparent
+                 transition-opacity duration-300
+                 group-hover:opacity-100"
+                              />
+
+                              {/* Hover sweep */}
+                              <span
+                                 className="absolute inset-0 -translate-x-full
+                 bg-gradient-to-r from-transparent via-white/20 to-transparent
+                 transition-transform duration-700 ease-out
+                 group-hover:translate-x-full"
+                              />
+
+                              {/* Icon */}
+                              <span className="relative flex items-center justify-center w-6 h-6">
+                                 <Download
+                                    className="w-5 h-5 transition-transform duration-300
+                   group-hover:rotate-12 group-hover:scale-110"
+                                    strokeWidth={2.5}
+                                 />
+                              </span>
+
+                              {/* Text */}
+                              <span className="relative">Download Catalog</span>
+                           </button>
+                        </a>
                      </nav>
-                     {isAdmin && (
+                     {/* {isAdmin && (
                         <div className="border-t pt-3">
                            <p className="text-xs text-gray-500 px-1 mb-2">
                               Admin
@@ -532,8 +548,7 @@ export function Navbar() {
                               Logout
                            </button>
                         </div>
-                     )}
-
+                     )} */}
                   </div>
                )}
             </div>

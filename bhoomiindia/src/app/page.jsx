@@ -9,11 +9,11 @@ export default function Home() {
             {/* Background Image */}
             <div
                className="absolute inset-0 bg-cover bg-center"
-               style={{ backgroundImage: "url('/banner.jpg')" }}
+               style={{ backgroundImage: "url('/banner2.png')" }}
             />
 
             {/* Overlay */}
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/60" />
 
             {/* Content */}
             <div className="relative z-10 px-6 max-w-4xl">
@@ -160,7 +160,7 @@ export default function Home() {
                            Release agents, plunger lubricants, and coatings for HPDC, GDC, and LPDC applications
                         </p>
                         <Link
-                           href="/products"
+                           href="/products/die-casting-tools"
                            className="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all"
                         >
                            Learn More
@@ -177,7 +177,7 @@ export default function Home() {
                            Dosing systems, spray guns, automation units, and custom fabrication solutions
                         </p>
                         <Link
-                           href="/products"
+                           href="/products/tools-accessories"
                            className="inline-flex items-center gap-2 text-white font-semibold hover:gap-3 transition-all"
                         >
                            Learn More

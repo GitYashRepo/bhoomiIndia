@@ -4,12 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const NotFound = () => {
-   const navigate = useNavigate();
    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-   useEffect(() => {
-      console.error("404 Error: User attempted to access non-existent route:", location.pathname);
-   }, [location.pathname]);
 
    useEffect(() => {
       const handleMouseMove = (e) => {
