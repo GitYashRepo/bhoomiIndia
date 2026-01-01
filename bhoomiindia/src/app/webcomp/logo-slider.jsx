@@ -28,6 +28,8 @@ export function LogoSlider() {
    const sliderRef = useRef(null)
    const [scrollProgress, setScrollProgress] = useState(0)
    const [isAutoScroll, setIsAutoScroll] = useState(true)
+   const [isDragging, setIsDragging] = useState(false)
+   const [dragStart, setDragStart] = useState(0)
 
    useEffect(() => {
       const slider = sliderRef.current
@@ -49,6 +51,45 @@ export function LogoSlider() {
       }
    }, [])
 
+   useEffect(() => {
+      const slider = sliderRef.current
+      if (!slider) return
+
+      const handleTouchStart = (e) => {
+         setIsDragging(true)
+         setDragStart(e.touches[0].clientX)
+         setIsAutoScroll(false)
+      }
+
+      const handleTouchMove = (e) => {
+         if (!isDragging) return
+         const currentX = e.touches[0].clientX
+         const diff = dragStart - currentX
+         slider.scrollLeft += diff
+         setDragStart(currentX)
+      }
+
+      const handleTouchEnd = () => {
+         setIsDragging(false)
+         // resume auto scroll after a delay
+         setTimeout(() => {
+            if (slider.scrollLeft >= slider.scrollWidth / 2) {
+               slider.scrollLeft = 0
+            }
+            setIsAutoScroll(true)
+         }, 500)
+      }
+
+      slider.addEventListener("touchstart", handleTouchStart)
+      slider.addEventListener("touchmove", handleTouchMove)
+      slider.addEventListener("touchend", handleTouchEnd)
+
+      return () => {
+         slider.removeEventListener("touchstart", handleTouchStart)
+         slider.removeEventListener("touchmove", handleTouchMove)
+         slider.removeEventListener("touchend", handleTouchEnd)
+      }
+   }, [isDragging, dragStart])
 
    useEffect(() => {
       if (!isAutoScroll || !sliderRef.current) return
@@ -71,7 +112,6 @@ export function LogoSlider() {
 
       return () => cancelAnimationFrame(animationId)
    }, [isAutoScroll])
-
 
    const scroll = (direction) => {
       const slider = sliderRef.current
@@ -131,7 +171,11 @@ export function LogoSlider() {
                </button>
 
                {/* Slider */}
-               <div ref={sliderRef} className="flex gap-8 overflow-x-auto scroll-smooth pb-8 hide-scrollbar">
+               <div
+                  ref={sliderRef}
+                  className="flex gap-8 overflow-x-auto scroll-smooth pb-8 hide-scrollbar"
+                  style={{ cursor: isDragging ? "grabbing" : "grab" }}
+               >
                   {[...logos, ...logos].map((logo, index) => (
                      <div key={`${logo.id}-${index}`} className="flex-shrink-0 group/card">
                         <div className="relative w-64 h-32 bg-blue-200 backdrop-blur-xl rounded-2xl border border-white/40 shadow-lg hover:shadow-2xl transition-all duration-500 hover:translate-y-2 hover:bg-blue-300 p-6 flex items-center justify-center overflow-hidden">
@@ -147,9 +191,7 @@ export function LogoSlider() {
                                     className={`object-contain max-w-full max-h-full text-slate-900 transition-all duration-300 ${logo.name === "Kh-Vatec" ? "filter invert" : ""}`}
                                  />
                               </div>
-                              <p className="text-sm font-semibold text-slate-900 transition-colors duration-300">
-                                 {logo.name}
-                              </p>
+                              <p className="text-sm font-semibold text-slate-900 transition-colors duration-300">{logo.name}</p>
                            </div>
                         </div>
                      </div>
