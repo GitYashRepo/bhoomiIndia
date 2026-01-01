@@ -59,18 +59,20 @@ export default function Footer() {
                   </p>
                   <div className="flex gap-3">
                      <a
-                        href="#"
+                        target="_blank"
+                        href="https://www.facebook.com/share/1Fdr52JFQ1/?mibextid=wwXIfr"
                         className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
                      >
                         <Facebook className="w-4 h-4" />
                      </a>
                      <a
-                        href="#"
+                        target="_blank"
+                        href="https://www.linkedin.com/in/bhoomi-india-baa44239b"
                         className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
                      >
                         <Linkedin className="w-4 h-4" />
                      </a>
-                     <a
+                     {/* <a
                         href="#"
                         className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
                      >
@@ -81,7 +83,7 @@ export default function Footer() {
                         className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-white/20 transition-colors"
                      >
                         <Youtube className="w-4 h-4" />
-                     </a>
+                     </a> */}
                   </div>
                </div>
 
