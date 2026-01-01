@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link"
 import { ArrowRight, Factory, Wrench, ShieldCheck, Users } from "lucide-react"
+import { LogoSlider } from "./webcomp/logo-slider";
 
 export default function Home() {
    return (
@@ -17,11 +18,11 @@ export default function Home() {
 
             {/* Content */}
             <div className="relative z-10 px-6 max-w-4xl">
-               <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+               <h1 className="text-2xl md:text-3xl lg:text-5xl font-bold mb-6 leading-tight">
                   Leading Manufacturer of Metal Forming Products
                </h1>
 
-               <p className="text-lg md:text-2xl text-blue-100 mb-10 leading-relaxed">
+               <p className="text-lg md:text-xl text-blue-100 mb-10 leading-relaxed">
                   Specialized solutions in forging lubricants, die casting equipment, and industrial
                   automation for metal forming industries worldwide.
                </p>
@@ -29,7 +30,7 @@ export default function Home() {
                <div className="flex flex-wrap gap-4">
                   <Link
                      href="/products"
-                     className="bg-white text-[#0d4f8b] px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-50 transition inline-flex items-center gap-2"
+                     className="bg-white text-[#0d4f8b] px-8 py-2 rounded-lg font-semibold text-lg hover:bg-blue-50 transition inline-flex items-center gap-2"
                   >
                      Explore Products
                      <ArrowRight className="w-5 h-5" />
@@ -37,7 +38,7 @@ export default function Home() {
 
                   <Link
                      href="/contact"
-                     className="border-2 border-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition"
+                     className="border-2 border-white px-8 py-2 rounded-lg font-semibold text-lg hover:bg-white/10 transition"
                   >
                      Contact Us
                   </Link>
@@ -188,6 +189,10 @@ export default function Home() {
                   </div>
                </div>
             </div>
+         </section>
+
+         <section className="">
+            <LogoSlider />
          </section>
 
          {/* CTA Section */}
