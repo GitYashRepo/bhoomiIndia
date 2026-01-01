@@ -56,30 +56,55 @@ export default async function ProductsPage() {
                         </ul>
                      </div>
 
-                     {service.products?.length > 0 && (
-                        <div className="overflow-x-auto">
-                           <table className="w-full bg-white shadow-sm rounded-lg">
-                              <thead className="bg-[#0d4f8b] text-white">
-                                 <tr>
-                                    <th className="px-6 py-4 text-left">Product</th>
-                                    <th className="px-6 py-4 text-left">Use</th>
-                                    <th className="px-6 py-4 text-left">Solid Content %</th>
-                                    <th className="px-6 py-4 text-left">Graphite</th>
-                                 </tr>
-                              </thead>
-                              <tbody>
-                                 {service.products.map((p, i) => (
-                                    <tr key={i} className="border-t">
-                                       <td className="px-6 py-4 font-semibold">{p.productName}</td>
-                                       <td className="px-6 py-4">{p.use}</td>
-                                       <td className="px-6 py-4">{p.solidContent}</td>
-                                       <td className="px-6 py-4">{p.graphite}</td>
+                     {service.products?.length > 0 && (() => {
+                        const hasUse = service.products.some(p => p.use);
+                        const hasSolid = service.products.some(p => p.solidContent);
+                        const hasGraphite = service.products.some(p => p.graphite);
+
+                        return (
+                           <div className="overflow-x-auto">
+                              <table className="w-full bg-white shadow-sm rounded-lg">
+                                 <thead className="bg-[#0d4f8b] text-white">
+                                    <tr>
+                                       <th className="px-6 py-4 text-left">Product</th>
+                                       {hasUse && <th className="px-6 py-4 text-left">Use</th>}
+                                       {hasSolid && <th className="px-6 py-4 text-left">Solid Content %</th>}
+                                       {hasGraphite && <th className="px-6 py-4 text-left">Graphite</th>}
                                     </tr>
-                                 ))}
-                              </tbody>
-                           </table>
-                        </div>
-                     )}
+                                 </thead>
+
+                                 <tbody>
+                                    {service.products.map((p, i) => (
+                                       <tr key={i} className="border-t">
+                                          <td className="px-6 py-4 font-semibold">
+                                             {p.productName}
+                                          </td>
+
+                                          {hasUse && (
+                                             <td className="px-6 py-4">
+                                                {p.use || "-"}
+                                             </td>
+                                          )}
+
+                                          {hasSolid && (
+                                             <td className="px-6 py-4">
+                                                {p.solidContent || "-"}
+                                             </td>
+                                          )}
+
+                                          {hasGraphite && (
+                                             <td className="px-6 py-4">
+                                                {p.graphite || "-"}
+                                             </td>
+                                          )}
+                                       </tr>
+                                    ))}
+                                 </tbody>
+                              </table>
+                           </div>
+                        );
+                     })()}
+
                   </div>
                ))}
 
