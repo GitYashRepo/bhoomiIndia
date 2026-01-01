@@ -5,7 +5,7 @@ import Image from "next/image"
 
 const logos = [
    { id: 1, name: "Revent Precision", url: "/clientslogo/revent.png" },
-   { id: 2, name: "VFI Filters", url: "/clientslogo/vfi.png" },
+   { id: 2, name: "UFI Filters", url: "/clientslogo/ufi.svg" },
    { id: 3, name: "GROZ Engineering", url: "/clientslogo/groz.png" },
    { id: 4, name: "UCAL", url: "/clientslogo/Ucal.png" },
    { id: 5, name: "Sadhu Forgin", url: "/clientslogo/sadhuforging.png" },
@@ -149,7 +149,7 @@ export function LogoSlider() {
                <h2 className="text-sm font-semibold tracking-widest text-slate-500 uppercase mb-4">
                   TRUSTED BY INDUSTRY LEADERS
                </h2>
-               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 text-pretty">Our Clients</h1>
+               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-slate-900 mb-6 text-pretty">Serving Leaders Across Industries</h1>
                <p className="text-lg text-slate-600 max-w-2xl mx-auto text-pretty">
                   Join thousands of innovative companies that trust our platform to drive their growth
                </p>

@@ -133,8 +133,8 @@ export default function AboutPage() {
 
                            {/* Floating accent badge */}
                            <div className="absolute -bottom-8 -right-4 bg-[#0d4f8b] text-white rounded-2xl p-4 shadow-lg border-4 border-white backdrop-blur-sm">
-                              <p className="font-bold text-sm md:text-lg">Founder &</p>
-                              <p className="font-bold text-sm md:text-lg">CEO</p>
+                              <p className="font-bold text-sm md:text-lg">Founder & CEO</p>
+                              <p className="font-bold text-sm">Edu: B.Tech Mech. Engg.</p>
                            </div>
                         </div>
                      </div>
